@@ -130,7 +130,11 @@ public class Quest {
                 String[] quests = sanitizedCondition.split(",");
 
                 for (String quest : quests) {
-                    subPreconditions.add(Integer.parseInt(quest));
+                    // Supprimer les espaces avant de convertir en entier
+                    String trimmedQuest = quest.trim();
+                    if (!trimmedQuest.isEmpty()) {
+                        subPreconditions.add(Integer.parseInt(trimmedQuest));
+                    }
                 }
             }
 
