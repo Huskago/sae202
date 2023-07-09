@@ -8,7 +8,7 @@ import fr.huskago.utils.Logger;
 import java.util.List;
 import java.util.Objects;
 
-public class GameManager {
+public class GameManager implements Cloneable {
     private Logger logger;
     private GameMap gameMap;
     private Player player;
@@ -53,6 +53,15 @@ public class GameManager {
 
     public List<Quest> getQuests() {
         return quests;
+    }
+
+    public Quest getQuestById(int id) {
+        for (Quest quest : quests) {
+            if (quest.getId() == id) {
+                return quest;
+            }
+        }
+        return null;
     }
 
     public void addTime(int time) {

@@ -34,21 +34,19 @@ public class Player {
 
     public void move(Direction direction) {
         switch (direction) {
-            case UP:
-                this.position.setY(position.getY() + 1);
-                break;
-            case DOWN:
-                this.position.setY(position.getY() - 1);
-                break;
-            case LEFT:
-                this.position.setX(position.getX() - 1);
-                break;
-            case RIGHT:
-                this.position.setX(position.getX() + 1);
-                break;
+            case UP -> this.position.move(0, 1);
+            case DOWN -> this.position.move(0, -1);
+            case LEFT -> this.position.move(-1, 0);
+            case RIGHT -> this.position.move(1, 0);
         }
         this.gameManager.addTime(1);
-        this.gameManager.getLogger().log("Player\'s moved to " + this.position.getX() + "x" + this.position.getY() + " (" + direction + ")");
+        this.gameManager.getLogger().log("Player\'s moved to " + this.position.getX() + "x" + this.position.getY() + " (" + direction + ") - " + this.gameManager.getTime() + " time units");
+
+        Quest quest = getQuestByPosition(this.position);
+
+        if (quest != null) {
+            finishQuest();
+        }
     }
 
     public int getExperience() {
@@ -67,6 +65,10 @@ public class Player {
         }
     }
 
+    public List<Quest> getCompletedQuests() {
+        return completedQuests;
+    }
+
     public Quest getQuestByPosition(Position position) {
         for (Quest quest : this.gameManager.getQuests()) {
             if (quest.getPosition().getX() == position.getX() && quest.getPosition().getY() == position.getY()) {
@@ -76,16 +78,16 @@ public class Player {
         return null;
     }
 
-    public void finishQuest(GameManager gameManager) {
+    public void finishQuest() {
         Quest quest = getQuestByPosition(this.position);
         if (quest != null) {
             if (Quest.arePreconditionsMet(quest, this.completedQuests)) {
-                this.gameManager.getLogger().log("Player\'s finished quest " + quest.getId() + " (" + quest.getName() + ")");
+                this.gameManager.getLogger().log("Player\'s finished quest " + quest.getId() + " (" + quest.getName() + ") - " + this.gameManager.getTime() + " time units");
                 if (quest.getId() == 0) {
                     if (this.experience >= quest.getExperience()) {
-                        this.gameManager.getLogger().log("Player\'s finished the final quest, the game is now over");
+                        this.gameManager.getLogger().log("Player\'s finished the final quest, the game is now over - " + this.gameManager.getTime() + " time units");
                         System.out.println();
-                        System.out.println("Vous avez terminé le jeu !");
+                        System.out.println("Vous avez terminé le jeu !  - " + this.gameManager.getTime() + " time units");
                         this.gameManager.end();
                     } else {
                         new Exception("Impossible de terminer la quête n°0 car l'expérience requise n'est pas atteinte").printStackTrace();

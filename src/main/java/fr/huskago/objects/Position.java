@@ -10,15 +10,22 @@ public class Position {
         this.coordinates = new Tuple<>(x, y);
     }
 
-    // Getters et setters
-    public int getX() { return this.coordinates.getItem1(); }
+    // Getters pour les coordonnées
+    public int getX() {
+        return this.coordinates.getItem1();
+    }
 
-    public int getY() { return this.coordinates.getItem2(); }
+    public int getY() {
+        return this.coordinates.getItem2();
+    }
 
-    public void setX(int x) { this.coordinates.setItem1(x); }
-
-    public void setY(int y) { this.coordinates.setItem2(y); }
-
+    // Méthode pour déplacer la position
+    public void move(int deltaX, int deltaY) {
+        int newX = getX() + deltaX;
+        int newY = getY() + deltaY;
+        this.coordinates.setItem1(newX);
+        this.coordinates.setItem2(newY);
+    }
 
     // Méthode pour analyser la chaîne de position
     public static Position parsePosition(String positionData) {
@@ -28,5 +35,15 @@ public class Position {
         int x = Integer.parseInt(coordinates[0].trim());
         int y = Integer.parseInt(coordinates[1].trim());
         return new Position(x, y);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Position other = (Position) obj;
+        return getX() == other.getX() && getY() == other.getY();
     }
 }

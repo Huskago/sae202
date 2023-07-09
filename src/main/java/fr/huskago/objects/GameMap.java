@@ -71,4 +71,12 @@ public class GameMap {
             System.out.println(); // Saut de ligne après chaque ligne de la carte
         }
     }
+
+    public int getWidth() {
+        return this.map[0].length;
+    }
+
+    public int getHeight() {
+        return this.map.length;
+    }
 }
