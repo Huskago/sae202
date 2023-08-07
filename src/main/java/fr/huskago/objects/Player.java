@@ -45,6 +45,7 @@ public class Player {
         Quest quest = getQuestByPosition(this.position);
 
         if (quest != null) {
+            if (completedQuests.contains(quest)) return;
             finishQuest();
         }
     }
@@ -81,14 +82,14 @@ public class Player {
     public void finishQuest() {
         Quest quest = getQuestByPosition(this.position);
         if (quest != null) {
-            if (Quest.arePreconditionsMet(quest, this.completedQuests)) {
+//            if (Quest.arePreconditionsMet(quest, this.completedQuests)) {
                 this.gameManager.getLogger().log("Player\'s finished quest " + quest.getId() + " (" + quest.getName() + ") - " + this.gameManager.getTime() + " time units");
                 if (quest.getId() == 0) {
                     if (this.experience >= quest.getExperience()) {
+                        this.gameManager.addTime(quest.getDuration());
                         this.gameManager.getLogger().log("Player\'s finished the final quest, the game is now over - " + this.gameManager.getTime() + " time units");
                         System.out.println();
                         System.out.println("Vous avez terminé le jeu !  - " + this.gameManager.getTime() + " time units");
-                        this.gameManager.end();
                     } else {
                         new Exception("Impossible de terminer la quête n°0 car l'expérience requise n'est pas atteinte").printStackTrace();
                     }
@@ -100,8 +101,8 @@ public class Player {
             } else {
                 new Exception("Impossible de terminer la quête " + quest.getId() + " (" + quest.getName() + ") car les préconditions ne sont pas remplies").printStackTrace();
             }
-        } else {
-            new Exception("Impossible de terminer la quête à la position " + this.position.toString()).printStackTrace();
-        }
+//        } else {
+//            new Exception("Impossible de terminer la quête à la position " + this.position.toString()).printStackTrace();
+//        }
     }
 }

@@ -1,7 +1,6 @@
 package fr.huskago.objects;
 
 import fr.huskago.GameManager;
-import fr.huskago.enums.Direction;
 
 import java.util.Arrays;
 import java.util.List;

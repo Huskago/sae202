@@ -75,9 +75,14 @@ public class Quest {
     public static boolean arePreconditionsMet(Quest quest, List<Quest> completedQuests) {
         List<List<Integer>> preconditions = quest.getPreconditions();
 
+        // Vérifier si la quête n'a pas de préconditions genre "[]" et "[[]]"
+        if (preconditions.isEmpty() || (preconditions.size() == 1 && preconditions.get(0).isEmpty())) {
+            return true;
+        }
+
         // Vérifier chaque condition alternative
         for (List<Integer> subPreconditions : preconditions) {
-            boolean isSubConditionMet = true;
+            boolean isSubConditionMet = false;
 
             // Vérifier chaque quête dans la condition alternative
             for (Integer questId : subPreconditions) {
@@ -91,20 +96,21 @@ public class Quest {
                     }
                 }
 
-                if (!isQuestCompleted) {
-                    isSubConditionMet = false;
+                // Si au moins une quête est complétée, la condition alternative est remplie
+                if (isQuestCompleted) {
+                    isSubConditionMet = true;
                     break;
                 }
             }
 
-            // Si une condition alternative est remplie, la quête peut être effectuée
-            if (isSubConditionMet) {
-                return true;
+            // Si aucune quête n'est complétée dans la condition alternative, la condition n'est pas remplie
+            if (!isSubConditionMet) {
+                return false;
             }
         }
 
-        // Aucune condition alternative n'est remplie, la quête ne peut pas être effectuée
-        return false;
+        // Toutes les conditions alternatives sont remplies, la précondition est satisfaite
+        return true;
     }
 
 

@@ -27,13 +27,6 @@ public class GameManager implements Cloneable {
         logger.log("Game's initialized.");
     }
 
-    public void end() {
-        logger.log("Game's ended.");
-        logger.closeLogger();
-
-        System.exit(0);
-    }
-
     private void displayQuests() {
         System.out.println("Quêtes chargées : " + quests.size());
         QuestsManager.drawQuestsInterface(quests);
@@ -66,6 +59,10 @@ public class GameManager implements Cloneable {
 
     public void addTime(int time) {
         this.time += time;
+    }
+
+    public void resetTime() {
+        time = 0;
     }
 
     public int getTime() {

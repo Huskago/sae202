@@ -1,0 +1,19 @@
+[2023-07-09 21:18:55.855] Game's initialized.
+[2023-07-09 21:18:55.868] Player's moved to 1x0 (RIGHT) - 1 time units
+[2023-07-09 21:18:55.868] Player's moved to 2x0 (RIGHT) - 2 time units
+[2023-07-09 21:18:55.868] Player's moved to 3x0 (RIGHT) - 3 time units
+[2023-07-09 21:18:55.868] Player's moved to 4x0 (RIGHT) - 4 time units
+[2023-07-09 21:18:55.868] Player's moved to 4x1 (UP) - 5 time units
+[2023-07-09 21:18:55.868] Player's moved to 4x2 (UP) - 6 time units
+[2023-07-09 21:18:55.868] Player's moved to 4x3 (UP) - 7 time units
+[2023-07-09 21:18:55.872] Player's finished quest 1 (explorer pic de Bhanborim) - 7 time units
+[2023-07-09 21:18:55.873] Player's moved to 3x3 (LEFT) - 10 time units
+[2023-07-09 21:18:55.873] Player's moved to 3x2 (DOWN) - 11 time units
+[2023-07-09 21:18:55.873] Player's finished quest 4 (vaincre Loup Géant) - 11 time units
+[2023-07-09 21:18:55.873] Player's moved to 3x1 (DOWN) - 18 time units
+[2023-07-09 21:18:55.873] Player's finished quest 2 (dialoguer avec Kaela la chaman des esprits) - 18 time units
+[2023-07-09 21:18:55.873] Player's moved to 2x1 (LEFT) - 20 time units
+[2023-07-09 21:18:55.873] Player's moved to 1x1 (LEFT) - 21 time units
+[2023-07-09 21:18:55.873] Player's finished quest 0 (vaincre Araignée lunaire) - 21 time units
+[2023-07-09 21:18:55.874] Player's finished the final quest, the game is now over - 25 time units
+[2023-07-09 21:18:55.874] Game's ended.
